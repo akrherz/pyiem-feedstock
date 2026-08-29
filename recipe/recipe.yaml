@@ -1,28 +1,31 @@
-{% set name = "pyiem" %}
-{% set version = "1.27.0" %}
+schema_version: 1
+
+context:
+  name: pyiem
+  version: "1.27.0"
+  python_min: "3.11"
 
 package:
-  name: {{ name|lower }}
-  version: {{ version }}
+  name: ${{ name|lower }}
+  version: ${{ version }}
 
 source:
-  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
   sha256: 950dc9a2cadc1fa99113531ed97cbaba861d2a2c7f4d8a73d45980282fbfbf69
 
 build:
-  noarch: python
   number: 0
-  script: {{ PYTHON }} -m pip install . --no-deps -vv
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . --no-deps -vv
 
 requirements:
   host:
-    - python {{ python_min }}
+    - python ${{ python_min }}.*
     - setuptools
     - pip
     - setuptools_scm
-
   run:
-    - python >={{ python_min }}
+    - python >=${{ python_min }}
     - affine
     - defusedxml
     - docutils
@@ -52,23 +55,23 @@ requirements:
     - twython
     - xarray
 
-test:
-  requires:
-    - python {{ python_min }}
-  imports:
-    - pyiem
+tests:
+  - python:
+      imports:
+        - pyiem
+      pip_check: false
+      python_version: ${{ python_min }}
 
 about:
-  home: https://github.com/akrherz/pyIEM
   license: MIT
-  license_family: MIT
   license_file: LICENSE
   summary: A general library supporting NWS Products and the IEM Project.
   description: |
     pyIEM contains a wide collection of codes relevant for working with
     US National Weather Service data and code that supports the Iowa
     Environmental Mesonet project at Iowa State University.
-  dev_url: https://github.com/akrherz/pyIEM
+  homepage: https://github.com/akrherz/pyIEM
+  repository: https://github.com/akrherz/pyIEM
 
 extra:
   recipe-maintainers:
