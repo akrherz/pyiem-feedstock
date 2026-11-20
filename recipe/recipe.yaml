@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: pyiem
-  version: "1.28.1"
+  version: "1.29.0"
 
 package:
   name: ${{ name|lower }}
@@ -10,7 +10,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
-  sha256: 4f3407a37355e4a08a8896e52cf50dc8b2bd3e4358bf98b68db6513714fc51e1
+  sha256: 341c55d7e433fcf864cfbf4eb6ab71fba1316dac3da60f13f29ed74936fc4d56
 
 build:
   number: 0
@@ -36,7 +36,6 @@ requirements:
     - netCDF4
     - numpy
     - pandas
-    - paste
     - pillow
     - pyarrow
     - pydantic
